@@ -30,4 +30,7 @@ def minOperations(n: int) -> int:
             operations_counter += 2
             current_counter = clipboard
         clipboard = 0
+    if n > 1:
+        return 0
+
     return operations_counter
