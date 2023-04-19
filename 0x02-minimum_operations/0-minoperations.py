@@ -20,7 +20,7 @@ def minOperations(n: int) -> int:
         return 0
 
     operations_counter = 0
-    current_counter = 2
+    current_counter = 1
     clipboard = 0
 
     while current_counter <= n:
