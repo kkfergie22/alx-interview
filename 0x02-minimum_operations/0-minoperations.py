@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 
 """This function calculates the minimum number of operations
 to achieve a result"""
