@@ -15,20 +15,24 @@ def minOperations(n: int) -> int:
     Returns:
         int: The fewest number of operations needed to obtain n H characters.
     """
+
+    if n == 0 or n == 1:
+        return 0
+
     operations_counter = 0
-    current_counter = 1
+    current_counter = 2
     clipboard = 0
 
     while current_counter <= n:
         if n % current_counter == 0:
             clipboard = current_counter
             n = n / current_counter
-        else:
-            current_counter += 1
-            continue
+            operations_counter += clipboard
         if clipboard != 0:
             operations_counter += 2
-            current_counter = clipboard
+            current_counter = clipboard + 1
+        else:
+            current_counter += 1
         clipboard = 0
     if n > 1:
         return 0

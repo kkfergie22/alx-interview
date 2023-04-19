@@ -2,9 +2,9 @@
 
 ## Algorithm
 
-Initialize a variable operations_counter to 0, a variable current_operation to 1, and a variable clipboard to 0.
+Initialize a variable `operations_counter` to 0, a variable `current_counter` to 1, and a variable `clipboard` to 0.
     While current_counter is less than or equal to n, do the following:
-    a. If n is divisible by current_counter, then set clipboard to `current_counter` and divide n by `current_counter`.
+    a. If n is divisible by `current_counter`, then set clipboard to `current_counter` and divide n by `current_counter`.
     b. Otherwise, increment `current_counter` by 1 and continue.
     c. If clipboard is not 0, then increment operations by 2 (one operation to copy and one operation to paste) and set `current_counter` to clipboard.
     d. Set clipboard to 0 and continue.
