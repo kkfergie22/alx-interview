@@ -15,18 +15,15 @@ Status codes that do not appear or are not integers will not be printed
 Example usage:
 
 $ cat input.txt | python my_script.py
+
 """
-
-
 import sys
 from collections import defaultdict
-from typing import Dict, Any
 
 # initialize variables
-total_size: int = 0  # total file size
-status_code_counts: Dict[int, int] = defaultdict(
-    int)  # number of lines by status code
-line_count: int = 0  # count of processed lines
+total_size = 0
+status_code_counts = defaultdict(int)
+line_count = 0
 
 # process input line by line
 for line in sys.stdin:
@@ -39,7 +36,7 @@ for line in sys.stdin:
             continue
         status_code = int(status_code)
         file_size = int(file_size)
-    except ValueError:  # skip if the line is not in the expected format
+    except ValueError:
         continue
 
     # update metrics
