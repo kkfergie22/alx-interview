@@ -1,22 +1,6 @@
 #!/usr/bin/python3
 
-"""
-This script reads lines of input from standard input and computes
-metrics based on the input format. The format
-should be in the following format:
-<IP Address> - [<date>] "GET /projects/260 HTTP/1.1" <status code> <file size>
-
-The script prints statistics every 10 lines or on keyboard interruption.
-The statistics include the total file size and the number of lines by
-status code, where possible status codes are 200, 301, 400, 401,
-403, 404, 405, and 500.
-Status codes that do not appear or are not integers will not be printed
-
-Example usage:
-
-$ cat input.txt | python my_script.py
-
-"""
+""" Log Parsing """
 import sys
 from collections import defaultdict
 
