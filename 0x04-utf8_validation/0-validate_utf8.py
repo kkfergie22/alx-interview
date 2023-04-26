@@ -23,21 +23,16 @@ def validUTF8(data):
             # Check how many bytes this UTF-8 character contains
             if byte >> 7 == 0b1:
                 return False
-            elif byte >> 5 == 0b110:
-                num_bytes = 1
-            elif byte >> 5 == 0b1110:
+            elif byte >> 5 == 0b110 or byte >> 5 == 0b1110:
                 num_bytes = 1
             elif byte >> 4 == 0b1110:
                 num_bytes = 2
             elif byte >> 3 == 0b11110:
                 num_bytes = 3
-            else:
-                return False
         else:
             # If this is not a continuation byte, return False
             if byte >> 6 != 0b10:
                 return False
-
             # We've read a valid continuation byte
             num_bytes -= 1
 
