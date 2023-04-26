@@ -28,6 +28,9 @@ def validUTF8(data):
             elif byte >> 3 == 0b11110:
                 # Character is 4 bytes long
                 bytes_remaining = 3
+            else:
+                # Invalid UTF-8 character start byte
+                return False
         else:
             # This byte should be a continuation byte
             if byte >> 6 != 0b10:
