@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""A script that reads from stdin and produces stats """
+''' A script that reads from stdin and produces stats '''
 import sys
 
 # Initialize counters for file size and status codes
