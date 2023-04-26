@@ -21,14 +21,16 @@ def validUTF8(data):
         # If this is the start of a new UTF-8 character
         if num_bytes == 0:
             # Check how many bytes this UTF-8 character contains
-            if byte >> 7 == 0b0:
-                num_bytes = 1
+            if byte >> 7 == 0b1:
+                return False
             elif byte >> 5 == 0b110:
-                num_bytes = 2
+                num_bytes = 1
+            elif byte >> 5 == 0b1110:
+                num_bytes = 1
             elif byte >> 4 == 0b1110:
-                num_bytes = 3
+                num_bytes = 2
             elif byte >> 3 == 0b11110:
-                num_bytes = 4
+                num_bytes = 3
             else:
                 return False
         else:
