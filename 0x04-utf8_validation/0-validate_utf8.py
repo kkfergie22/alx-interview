@@ -39,7 +39,7 @@ def validUTF8(data):
                 continue
         else:
             # If this is not a continuation byte, return False
-            if not (byte & mask1 and not (byte & mask2)):
+            if not (byte & mask1 and byte & mask2):
                 return False
 
         # We've read a valid continuation byte
