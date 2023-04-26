@@ -16,9 +16,9 @@ def validUTF8(data):
         # Check if this byte is the start of a new UTF-8 character
         if bytes_remaining == 0:
             # Determine the number of bytes in this UTF-8 character
-            if byte >> 7 == 0b0:
+            if byte >> 7:
                 # Character is 1 byte long
-                bytes_remaining = 0
+                return False
             elif byte >> 5 == 0b110:
                 # Character is 2 bytes long
                 bytes_remaining = 1
@@ -28,9 +28,6 @@ def validUTF8(data):
             elif byte >> 3 == 0b11110:
                 # Character is 4 bytes long
                 bytes_remaining = 3
-            else:
-                # Invalid UTF-8 character start byte
-                return False
         else:
             # This byte should be a continuation byte
             if byte >> 6 != 0b10:
