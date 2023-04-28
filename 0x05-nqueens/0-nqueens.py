@@ -60,7 +60,7 @@ def place_queens(board, row):
 
 
 # Initialize the board
-board = [['.' for _ in range(N)] for _ in range(N)]
+board = [['0' for _ in range(N)] for _ in range(N)]
 
 # Place the queens and print the solutions
 place_queens(board, 0)
