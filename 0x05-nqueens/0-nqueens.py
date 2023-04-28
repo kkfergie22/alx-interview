@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""""N Queens"""
+""""N Queens solution"""
 import sys
 
 """Solves the N queens problem"""
