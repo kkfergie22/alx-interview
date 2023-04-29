@@ -1,59 +1,37 @@
 #!/usr/bin/python3
+'''a script that reads stdin line by line and computes metrics'''
 
-"""A script that reads from stdin and produces stats.
-
-The script reads lines from standard input, expecting them to be in the format
-"<ip> - [<date>] \"<method> <url> <http_version>\" <status_code> <size>".
-It parses the lines to extract the file size and status code and produces
-statistics on the total file size and the number of occurrences of each status
-code. The script prints the statistics after every 10 lines and on keyboard
-interruption.
-"""
 
 import sys
 
-
-# Initialize counters for file size and status codes
+cache = {'200': 0, '301': 0, '400': 0, '401': 0,
+         '403': 0, '404': 0, '405': 0, '500': 0}
 total_size = 0
-status_codes = {
-    200: 0,
-    301: 0,
-    400: 0,
-    401: 0,
-    403: 0,
-    404: 0,
-    405: 0,
-    500: 0,
-}
+counter = 0
 
 try:
-    # Read input from stdin line by line
-    for i, line in enumerate(sys.stdin):
-        # Parse the line to extract the file size and status code
-        try:
-            _, _, _, _, _, status, size = line.split()
-            status = int(status)
-            size = int(size)
-        except ValueError:
-            # If the line doesn't match the expected format, skip it
-            continue
+    for line in sys.stdin:
+        line_list = line.split(" ")
+        if len(line_list) > 4:
+            code = line_list[-2]
+            size = int(line_list[-1])
+            if code in cache.keys():
+                cache[code] += 1
+            total_size += size
+            counter += 1
 
-        # Update counters
-        total_size += size
-        if status in status_codes:
-            status_codes[status] += 1
+        if counter == 10:
+            counter = 0
+            print('File size: {}'.format(total_size))
+            for key, value in sorted(cache.items()):
+                if value != 0:
+                    print('{}: {}'.format(key, value))
 
-        # Print statistics after every 10 lines
-        if (i + 1) % 10 == 0:
-            print(f'Total file size: {total_size:,}')
-            for code, count in sorted(status_codes.items()):
-                if count > 0:
-                    print(f'{code}: {count:,}')
-            print('-' * 10)
+except Exception as err:
+    pass
 
-except KeyboardInterrupt:
-    # Print final statistics on keyboard interruption
-    print(f'Total file size: {total_size:,}')
-    for code, count in sorted(status_codes.items()):
-        if count > 0:
-            print(f'{code}: {count:,}')
+finally:
+    print('File size: {}'.format(total_size))
+    for key, value in sorted(cache.items()):
+        if value != 0:
+            print('{}: {}'.format(key, value))
