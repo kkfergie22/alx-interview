@@ -1,3 +1,4 @@
+#!/usr/bin/node
 const movieId = process.argv[2]; // get movie ID from command line argument
 const apiUrl = `https://swapi.dev/api/films/${movieId}/`; // construct API URL
 
