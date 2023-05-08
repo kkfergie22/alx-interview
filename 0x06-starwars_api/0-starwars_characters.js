@@ -9,18 +9,23 @@ request(apiUrl, { json: true }, (err, res, data) => {
   } else if (res.statusCode !== 200) {
     console.error(`Error: ${res.statusCode} - ${res.statusMessage}`);
   } else {
-    // handle response data
-    const characters = data.characters; // extract character URLs from response
-    characters.forEach((characterUrl) => {
-      // loop through character URLs
-      request(characterUrl, { json: true }, (err, res, characterData) => {
+    // get the characters list in the correct order
+    const characters = data.characters;
+    const characterUrls = characters.map((characterUrl) => {
+      const characterId = characterUrl.match(/\/([0-9]*)\/$/)[1];
+      return { url: characterUrl, id: parseInt(characterId) };
+    });
+    characterUrls.sort((a, b) => a.id - b.id);
+
+    // fetch each character URL in the correct order and print the character name
+    characterUrls.forEach((characterUrl) => {
+      request(characterUrl.url, { json: true }, (err, res, characterData) => {
         if (err) {
           console.error(err);
         } else if (res.statusCode !== 200) {
           console.error(`Error: ${res.statusCode} - ${res.statusMessage}`);
         } else {
-          // handle response data for each character
-          console.log(characterData.name); // print character name
+          console.log(characterData.name);
         }
       });
     });
