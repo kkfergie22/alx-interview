@@ -10,9 +10,9 @@ def rotate_2d_matrix(matrix):
     :param matrix: A list of n lists, each containing n integers.
     :return: None.
     """
-    # reverse the matrix so that bottom row comes to the top
-    matrix.reverse()
-
+    # reverse each row the matrix so that the order changes
+    for i in range(len(matrix)):
+        matrix[i].reverse()
     # transpose the reversed matrix so that columns become rows
     for i in range(len(matrix)):
         for j in range(i, len(matrix)):
@@ -20,3 +20,8 @@ def rotate_2d_matrix(matrix):
                 matrix[i][j],
                 matrix[j][i],
             )
+    # reverse each row again to get previous order
+    for i in range(len(matrix)):
+        matrix[i].reverse()
+    # reverse the matrix to get final result
+    matrix.reverse()
