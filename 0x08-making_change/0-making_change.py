@@ -1,12 +1,10 @@
 #!/usr/bin/python3
 
-from typing import List
-
 """This function returns the minimum number of coins
     to make change for a given amount of money."""
 
 
-def makeChange(coins: List[int], total: int):
+def makeChange(coins, total):
     """
     Args:
         coins (List[int]): A list of coin denominations available for
