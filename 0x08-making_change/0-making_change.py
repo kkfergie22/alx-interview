@@ -14,8 +14,11 @@ def makeChange(coins, total):
         total (int): The target total for which we want to
         calculate the minimum number of coins.
     """
+
     if total <= 0:
         return 0
+
+    coins.sort(reverse=True)
 
     minimum_number_array = [float('inf')] * (total + 1)
     minimum_number_array[0] = 0
