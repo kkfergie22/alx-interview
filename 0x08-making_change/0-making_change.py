@@ -25,9 +25,10 @@ def makeChange(coins, total):
 
     for coin in coins:
         for i in range(1, total + 1):
-            if coin <= i:
-                minimum_number_array[i] = min(minimum_number_array[i],
-                                              minimum_number_array[i-coin] + 1)
+            if coin > i:
+                break
+            minimum_number_array[i] = min(minimum_number_array[i],
+                                          minimum_number_array[i-coin] + 1)
     if minimum_number_array[total] == float('inf'):
         return -1
     else:
