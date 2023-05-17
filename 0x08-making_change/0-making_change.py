@@ -8,9 +8,13 @@ from typing import List
 
 def makeChange(coins: List[int], total: int):
     """
-    args: coins
-        total
-    Return: fewest number of coins required to meet total
+    Args:
+        coins (List[int]): A list of coin denominations available for
+        making change.
+        Each coin denomination must be a positive integer greater than 0.
+
+        total (int): The target total for which we want to
+        calculate the minimum number of coins.
     """
 
     minimum_number_array = [float('inf')] * (total + 1)
