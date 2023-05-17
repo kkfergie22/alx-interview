@@ -18,8 +18,6 @@ def makeChange(coins, total):
     if total <= 0:
         return 0
 
-    coins.sort(reverse=True)
-
     minimum_number_array = [float('inf')] * (total + 1)
     minimum_number_array[0] = 0
 
