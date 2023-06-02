@@ -2,33 +2,34 @@
 """Prime game module"""
 
 
-def generate_primes(n):
-    """ Generate a list of prime numbers up to n
-    using the Sieve of Eratosthenes algorithm"""
-    primes = []
-    sieve = [True] * (n + 1)
-    sieve[0] = sieve[1] = False
+# def generate_primes(n):
+#     """ Generate a list of prime numbers up to n
+#     using the Sieve of Eratosthenes algorithm"""
+#     primes = []
+#     sieve = [True] * (n + 1)
+#     sieve[0] = sieve[1] = False
 
-    for p in range(2, int(n**0.5) + 1):
-        if sieve[p]:
-            for i in range(p * p, n + 1, p):
-                sieve[i] = False
+#     for p in range(2, int(n**0.5) + 1):
+#         if sieve[p]:
+#             for i in range(p * p, n + 1, p):
+#                 sieve[i] = False
 
-    for p in range(2, n + 1):
-        if sieve[p]:
-            primes.append(p)
+#     for p in range(2, n + 1):
+#         if sieve[p]:
+#             primes.append(p)
 
-    return primes
+#     return primes
 
 
 def isWinner(x, nums):
+    """Determines the winner of the prime game"""
     winner_counts = {'Maria': 0, 'Ben': 0}
 
-    primes = generate_primes(max(nums))
+    # primes = generate_primes(max(nums))
 
     for i in range(x):
         n = nums[i]
-        if n == 1 or n in primes:
+        if n == 1 or n % 2 != 0:
             # If n is 1 or a prime number, Ben wins
             winner_counts['Ben'] += 1
         else:
