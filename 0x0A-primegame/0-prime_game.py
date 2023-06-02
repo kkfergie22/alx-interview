@@ -1,7 +1,10 @@
 #!/usr/bin/python3
 """Prime game module"""
+
+
 def generate_primes(n):
-    """ Generate a list of prime numbers up to n using the Sieve of Eratosthenes algorithm"""
+    """ Generate a list of prime numbers up to n
+    using the Sieve of Eratosthenes algorithm"""
     primes = []
     sieve = [True] * (n + 1)
     sieve[0] = sieve[1] = False
@@ -16,6 +19,7 @@ def generate_primes(n):
             primes.append(p)
 
     return primes
+
 
 def isWinner(x, nums):
     winner_counts = {'Maria': 0, 'Ben': 0}
@@ -37,8 +41,3 @@ def isWinner(x, nums):
         return 'Ben'
     else:
         return None
-
-# Test case
-x = 3
-nums = [4, 5, 1]
-print(isWinner(x, nums))  # Output: Maria
